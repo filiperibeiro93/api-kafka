@@ -19,16 +19,16 @@ public class CarPostStoreServiceImpl implements CarPostStoreService {
 
     @Override
     public List<CarPostDto> getCarsForSale() {
-        return null;
+        return carPostStoreClient.carForSaleClient();
     }
 
     @Override
     public void changeCarForSale(CarPostDto dto, String id) {
-
+        carPostStoreClient.changeCarForSaleClient(dto, id);
     }
 
     @Override
     public void removeCarForSale(String id) {
-
+        carPostStoreClient.deleteCarForSaleClient(id);
     }
 }
