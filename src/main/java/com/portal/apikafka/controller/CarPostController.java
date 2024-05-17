@@ -23,6 +23,12 @@ public class CarPostController {
         this.kafkaProducerMessage = kafkaProducerMessage;
     }
 
+    @GetMapping("/post")
+    public ResponseEntity postCarForSale(@RequestBody CarPostDto dto) {
+        kafkaProducerMessage.sendMessage(dto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/posts")
     public ResponseEntity<List<CarPostDto>> getCarSales() {
         return ResponseEntity.status(HttpStatus.FOUND).body(carPostStoreService.getCarsForSale());
