@@ -33,7 +33,7 @@ public class CarPostStoreClient {
     }
 
     public void changeCarForSaleClient(CarPostDto carPostDto, String id) {
-        restTemplate.put(POST_STORE_SERVICE_URI + "/car/" + id, CarPostDto.class);
+        restTemplate.put(POST_STORE_SERVICE_URI + "/car/" + id, carPostDto, CarPostDto.class);
     }
 
     public void deleteCarForSaleClient(String id) {
