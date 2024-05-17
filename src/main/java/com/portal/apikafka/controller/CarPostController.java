@@ -1,6 +1,7 @@
 package com.portal.apikafka.controller;
 
 import com.portal.apikafka.dto.CarPostDto;
+import com.portal.apikafka.message.KafkaProducerMessage;
 import com.portal.apikafka.service.CarPostStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,12 @@ import java.util.List;
 public class CarPostController {
 
     private final CarPostStoreService carPostStoreService;
+    private final KafkaProducerMessage kafkaProducerMessage;
 
     @Autowired
-    public CarPostController(CarPostStoreService carPostStoreService) {
+    public CarPostController(CarPostStoreService carPostStoreService, KafkaProducerMessage kafkaProducerMessage) {
         this.carPostStoreService = carPostStoreService;
+        this.kafkaProducerMessage = kafkaProducerMessage;
     }
 
     @GetMapping("/posts")
