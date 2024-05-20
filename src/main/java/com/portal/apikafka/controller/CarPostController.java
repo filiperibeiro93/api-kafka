@@ -27,7 +27,7 @@ public class CarPostController {
 
     @PostMapping("/post")
     public ResponseEntity postCarForSale(@RequestBody CarPostDto dto) {
-        log.info("USANDO EVENTOS/MENSAGENS KAFKA - Producing Car Post Information: {}", dto);
+        log.info("USANDO MENSAGENS KAFKA - Producing Car Post Information: {}", dto);
         kafkaProducerMessage.sendMessage(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
