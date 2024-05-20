@@ -3,6 +3,7 @@ package com.portal.apikafka.controller;
 import com.portal.apikafka.dto.CarPostDto;
 import com.portal.apikafka.message.KafkaProducerMessage;
 import com.portal.apikafka.service.CarPostStoreService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Slf4j
 @RequestMapping("/api/car")
 public class CarPostController {
 
@@ -25,6 +27,7 @@ public class CarPostController {
 
     @PostMapping("/post")
     public ResponseEntity postCarForSale(@RequestBody CarPostDto dto) {
+        log.info("USANDO EVENTOS/MENSAGENS KAFKA - Producing Car Post Information: {}", dto);
         kafkaProducerMessage.sendMessage(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
